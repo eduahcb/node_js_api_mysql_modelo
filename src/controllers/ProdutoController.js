@@ -58,6 +58,8 @@ exports.post = async (req, res) => {
 
         const result = await produto.post(dados);
 
+        const id = result.insertId;
+        
         res.status(201).json({
             msg: "produto cadastrado",
             links: [
