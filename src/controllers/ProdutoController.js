@@ -19,6 +19,13 @@ exports.getId = async (req, res) => {
 
         const result = await produto.getId(id);
 
+        /* if(result.length == 0){
+            res.status(404).json({
+                msg : 'produto não encontrado'
+            });
+            return;
+        } */
+
         res.status(200).json({
             produto: result,
             links: [
