@@ -1,6 +1,5 @@
 require('dotenv').load();
 const express = require('express');
-const consign = require('consign');
 const bodyParser = require('body-parser');
 const validator = require('express-validator');
 const morgan = require('morgan');
@@ -23,12 +22,8 @@ module.exports = () =>{
     app.use(bodyParser.json());
     
     app.use(validator());
-
-    consign( {cwd : 'src'})
-        .then('routes')
-        .then('connection')
-        .then('util')
-        .into(app);
-
+    
+    require('../src/connection/config')();
+    require('../src/routes/routes')(app);
     return app;
 }
